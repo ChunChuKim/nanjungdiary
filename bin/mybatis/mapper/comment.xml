@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.toris93.nanjung.web.dao.CommentMapper"> 
+
+<select id="commentCount" parameterType="int" resultType="int">
+        SELECT
+            COUNT(*)
+        FROM COMMENT
+        WHERE bno=#{bno}
+    </select>
+    
+    <select id="commentList" parameterType="int" resultType="com.toris93.nanjung.web.domain.CommentVO">
+        SELECT
+            *
+        FROM COMMENT
+        WHERE bno=#{bno}
+    </select>
+    
+    
+    <insert id="commentInsert" parameterType="com.toris93.nanjung.web.domain.CommentVO">
+        INSERT INTO
+        COMMENT (CNO, BNO, CONTENT, WRITER, REG_DATE)
+        VALUES(#{cno},#{bno},#{content},#{writer},now()) 
+    </insert>
+    
+    <update id="commentUpdate" parameterType="com.toris93.nanjung.web.domain.CommentVO">
+        UPDATE COMMENT
+            SET
+            CONTENT = #{content}
+        WHERE CNO = #{cno}
+    </update>
+    
+    <delete id="commentDelete" parameterType="int">
+        DELETE FROM COMMENT WHERE CNO = #{cno}
+    </delete>
+ </mapper>
