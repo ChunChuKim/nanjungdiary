@@ -1,56 +1,45 @@
 package com.toris93.nanjung.web.domain;
 
+import java.util.Date;
+
 public class CommentVO {
 
-	private static String commentId;
-	private static String contentId;
-	private static String comment;
-	private static String email;
-	private static String userName;
-	private static String createDate;
-	private static String updateDate;
-	public static String getCommentId() {
-		return commentId;
+	private int cno;
+    private int bno;
+    private String content;
+    private String writer;
+    private Date reg_date;
+    
+	public int getCno() {
+		return cno;
 	}
-	public static void setCommentId(String commentId) {
-		CommentVO.commentId = commentId;
+	public void setCno(int cno) {
+		this.cno = cno;
 	}
-	public static String getContentId() {
-		return contentId;
+	public int getBno() {
+		return bno;
 	}
-	public static void setContentId(String contentId) {
-		CommentVO.contentId = contentId;
+	public void setBno(int bno) {
+		this.bno = bno;
 	}
-	public static String getComment() {
-		return comment;
+	public String getContent() {
+		return content;
 	}
-	public static void setComment(String comment) {
-		CommentVO.comment = comment;
+	public void setContent(String content) {
+		this.content = content;
 	}
-	public static String getEmail() {
-		return email;
+	public String getWriter() {
+		return writer;
 	}
-	public static void setEmail(String email) {
-		CommentVO.email = email;
+	public void setWriter(String writer) {
+		this.writer = writer;
 	}
-	public static String getUserName() {
-		return userName;
+	public Date getReg_date() {
+		return reg_date;
 	}
-	public static void setUserName(String userName) {
-		CommentVO.userName = userName;
+	public void setReg_date(Date reg_date) {
+		this.reg_date = reg_date;
 	}
-	public static String getCreateDate() {
-		return createDate;
-	}
-	public static void setCreateDate(String createDate) {
-		CommentVO.createDate = createDate;
-	}
-	public static String getUpdateDate() {
-		return updateDate;
-	}
-	public static void setUpdateDate(String updateDate) {
-		CommentVO.updateDate = updateDate;
-	}
-	
-	
+
+
 }
