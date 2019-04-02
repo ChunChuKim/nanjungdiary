@@ -15,10 +15,10 @@ public class CategoryController {
 	@Resource(name = "com.toris93.nanjung.web.service.CategoryService")
 	CategoryService categoryService;
 	
-	@RequestMapping("/list") // 게시판 리스트 화면 호출
+	@RequestMapping("/categoryList") // 게시판 리스트 화면 호출
 	private String categoryList(Model model) throws Exception {
 
-		model.addAttribute("categorylist", categoryService.categoryListService());
+		model.addAttribute("categorylist", categoryService.getCategoryList());
 
 		return "list"; // 생성할 jsp
 	}

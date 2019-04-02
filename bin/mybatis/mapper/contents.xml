@@ -7,11 +7,11 @@
 		COUNT(*)
 		FROM CONTENTS
 	</select>
-	<select id="boardList"
+	<select id="getContentsList"
 		resultType="com.toris93.nanjung.web.domain.ContentsVO">
 		SELECT
 		*
-		FROM CONTENTS
+		FROM contents
 	</select>
 
 	<select id="boardDetail" parameterType="int"

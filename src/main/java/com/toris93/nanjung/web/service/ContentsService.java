@@ -1,25 +1,27 @@
 package com.toris93.nanjung.web.service;
 
+import java.util.List;
+
 import com.toris93.nanjung.web.domain.ContentsVO;
 import com.toris93.nanjung.web.domain.FileVO;
 
 public interface ContentsService {
 
-	FileVO fileDetailService(int bno);
+	public FileVO fileDetail(int bno);
 
-	void fileInsertService(FileVO file);
+	public void fileInsert(FileVO file);
 
-	void contentsInsertService(ContentsVO contents);
+	public void contentsInsert(ContentsVO contents);
 
-	Object contentsListService();
+	public ContentsVO contentsDetail(int bno);
 
-	Object contentsDetailService(int bno);
+	public String getExtension(String fileName);
 
-	String getExtension(String fileName);
+	void contentsUpdate(ContentsVO contents);
 
-	void contentsUpdateService(ContentsVO contents);
+	void contentsDelete(int bno);
 
-	void contentsDeleteService(int bno);
+	public List<ContentsVO> contentsList();
 
 
 }

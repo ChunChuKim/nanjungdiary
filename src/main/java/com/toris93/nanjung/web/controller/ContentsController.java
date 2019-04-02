@@ -21,6 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.toris93.nanjung.web.domain.ContentsVO;
 import com.toris93.nanjung.web.domain.FileVO;
+import com.toris93.nanjung.web.service.CategoryService;
 import com.toris93.nanjung.web.service.ContentsService;
 
 @Controller
@@ -29,19 +30,23 @@ public class ContentsController {
 	@Resource(name = "com.toris93.nanjung.web.service.ContentsService")
 	ContentsService contentsService;
 	
+	@Resource(name = "com.toris93.nanjung.web.service.CategoryService")
+	CategoryService categoryService;
+	
 	@RequestMapping("/list") // 게시판 리스트 화면 호출
 	private String contentsList(Model model) throws Exception {
 
-		model.addAttribute("list", contentsService.contentsListService());
+		model.addAttribute("categoryList", categoryService.getCategoryList());
+		model.addAttribute("list", contentsService.contentsList());
 
-		return "list"; // 생성할 jsp
+		return "contents/list"; // 생성할 jsp
 	}
 
 	@RequestMapping("/detail/{bno}")
 	private String contentsDetail(@PathVariable int bno, Model model) throws Exception {
 
-		model.addAttribute("detail", contentsService.contentsDetailService(bno));
-		model.addAttribute("files", contentsService.fileDetailService(bno)); //추가
+		model.addAttribute("detail", contentsService.contentsDetail(bno));
+		model.addAttribute("files", contentsService.fileDetail(bno)); //추가
 
 		return "detail";
 	}
@@ -63,7 +68,7 @@ public class ContentsController {
 		contents.setEmail(request.getParameter("writer"));
 
 		if (files.isEmpty()) { // 업로드할 파일이 없을 시
-			contentsService.contentsInsertService(contents); // 게시글 insert
+			contentsService.contentsInsert(contents); // 게시글 insert
 		} else {
 
 			String fileName = files.getOriginalFilename(); 
@@ -81,14 +86,14 @@ public class ContentsController {
             destinationFile.getParentFile().mkdirs(); 
             files.transferTo(destinationFile); 
             
-            contentsService.contentsInsertService(contents); //게시글 insert
+            contentsService.contentsInsert(contents); //게시글 insert
 
 			file.setBno(contents.getContentId());
 			file.setFileName(destinationFileName);
 			file.setFileOriName(fileName);
 			file.setFileUrl(fileUrl);
 
-			contentsService.fileInsertService(file); // file insert
+			contentsService.fileInsert(file); // file insert
 		}
 
 		return "redirect:/list";
@@ -97,8 +102,8 @@ public class ContentsController {
 	@RequestMapping("/update/{bno}") // 게시글 수정폼 호출
 	private String contentsUpdateForm(@PathVariable int bno, Model model) throws Exception {
 
-		model.addAttribute("detail", contentsService.contentsDetailService(bno));
-		model.addAttribute("files", contentsService.fileDetailService(bno)); //추가
+		model.addAttribute("detail", contentsService.contentsDetail(bno));
+		model.addAttribute("files", contentsService.fileDetail(bno)); //추가
 
 		return "update";
 	}
@@ -111,7 +116,7 @@ public class ContentsController {
 		contents.setContents(request.getParameter("content"));
 		contents.setContentId(Integer.parseInt(request.getParameter("bno")));
 
-		contentsService.contentsUpdateService(contents);
+		contentsService.contentsUpdate(contents);
 
 		return "redirect:/detail/" + request.getParameter("bno");
 	}
@@ -119,7 +124,7 @@ public class ContentsController {
 	@RequestMapping("/delete/{bno}")
 	private String contentsDelete(@PathVariable int bno) throws Exception {
 
-		contentsService.contentsDeleteService(bno);
+		contentsService.contentsDelete(bno);
 
 		return "redirect:/list";
 	}
@@ -128,7 +133,7 @@ public class ContentsController {
     private void fileDown(@PathVariable int bno, HttpServletRequest request, HttpServletResponse response) throws Exception{
         
         request.setCharacterEncoding("UTF-8");
-        FileVO fileVO = contentsService.fileDetailService(bno);
+        FileVO fileVO = contentsService.fileDetail(bno);
         
         //파일 업로드된 경로 
         try{
