@@ -3,12 +3,19 @@ package com.toris93.nanjung.web.controller;
 import java.util.Locale;
 
 import javax.annotation.Resource;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.toris93.nanjung.web.domain.UserVO;
 import com.toris93.nanjung.web.service.UserService;
@@ -60,5 +67,21 @@ public class UserController {
 	public String profile(Locale locale, Model model) {
 		return "login/profile";
 	}
+	
+	@RequestMapping(value="/loginform", method=RequestMethod.GET)
+    public ModelAndView loginForm(UserVO loginCommand,
+                    @CookieValue(value="REMEMBER", required=false) Cookie rememberCookie) throws Exception {
+        
+        if(rememberCookie!=null) {
+            loginCommand.setEmail(rememberCookie.getValue());
+            loginCommand.setRememberId(true);
+        }
+        
+        ModelAndView mv = new ModelAndView("login/loginForm");
+        return mv;
+    }
+
+
+
 
 }

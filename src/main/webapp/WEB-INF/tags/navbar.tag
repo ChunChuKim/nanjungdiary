@@ -11,11 +11,11 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">스프링부트로 게시판 만들기!!</a>
+      <a class="navbar-brand" href="#"난중일기</a>
     </div>
  
     <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <!-- <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
           <li class="active"><a href="/list">기본 게시판1</a></li>
         <li><a href="#">기본 게시판2</a></li>
@@ -31,6 +31,6 @@
           </ul>
         </li>
       </ul>
-    </div><!-- /.navbar-collapse -->
+    </div> --><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>

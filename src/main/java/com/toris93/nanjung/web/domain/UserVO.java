@@ -6,6 +6,7 @@ public class UserVO {
 	private static String name;
 	private static String password;
 	private static String createDate;
+	private static boolean rememberId;
 	public static String getIdx() {
 		return idx;
 	}
@@ -35,6 +36,14 @@ public class UserVO {
 	}
 	public static void setCreateDate(String createDate) {
 		UserVO.createDate = createDate;
+	}
+	public void setRememberId(boolean b) {
+		// TODO Auto-generated method stub
+		UserVO.rememberId =b;
+		
+	}
+	public boolean getRememberId() {
+		return rememberId;
 	}
 	
 	

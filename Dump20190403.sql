@@ -18,7 +18,7 @@
 --
 -- Table structure for table `board`
 --
-
+use nanjung;
 DROP TABLE IF EXISTS `board`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;

@@ -7,6 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-난중일기 메인화면
+<li>
+    <a href="/login">로그인</a>
+<li>
+
 </body>
 </html>
